@@ -73,3 +73,13 @@
 #cancel {
     cursor: pointer;
 }
+
+.jobform--notes {
+    text-align: left;
+}
+
+.upload-section {
+    /* border-color: #ffffff; */
+    cursor: pointer;
+    margin-bottom: 10px;
+}

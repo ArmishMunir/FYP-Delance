@@ -1,10 +1,38 @@
 /* eslint-disable no-unused-vars */
 const { Router } = require("express");
 const express = require("express");
+const path = require('path');
+const multer = require('multer');
 const res = require("express/lib/response");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Projects = require("../models/projects");
+
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination(req, file, cb) {
+        cb(null, './files');
+        },
+        filename(req, file, cb) {
+            cb(null, `${new Date().getTime()}_${file.originalname}`);
+        }
+    }),
+    limits: {
+        fileSize: 15000000 // max file size 1MB = 1000000 bytes
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls|txt|zip)$/)) {
+            return cb(
+                new Error(
+                'only upload files with jpg, jpeg, png, pdf, doc, docx, xslx, xls, txt, zip format.'
+                )
+            );
+        }
+        cb(undefined, true); // continue with upload
+    }
+});
+
 
 router.route("/getall").get(async (req, resp) => {
     try {
@@ -79,10 +107,14 @@ router.route("/get/:_id").get(async (req, resp) => {
 });
 
 
-router.post('/add',async (req, resp) => {
+router.post('/add', upload.single('file'), async (req, resp) => {
     try {
+
         console.log("Route~Projects/add");    
         console.table(req.body);
+
+
+        const { path, mimetype } = req.file;
 
         Projects.init();
         const setid = new mongoose.Types.ObjectId();
@@ -95,6 +127,8 @@ router.post('/add',async (req, resp) => {
             ownerAddress: req.body.ownerAddress,
             price: req.body.price,
             technologies: req.body.technologies,
+            file_path: path,
+            file_mimetype: mimetype,
             status: req.body.status
 
         });
@@ -109,6 +143,20 @@ router.post('/add',async (req, resp) => {
     } catch (err) {
         console.warn(err);
         resp.status(404).json("Err"); // Sending res to client some err occured.
+    }
+});
+
+router.get('/download/:_id', async (req, res) => {
+    try {
+        // console.log(req.params._id);
+
+        const project = await Projects.findById(req.params._id);
+        res.set({
+            'Content-Type': project.file_mimetype
+        });
+        res.sendFile(path.join(__dirname, '..', project.file_path));
+    } catch (error) {
+        res.status(400).send('Error while downloading file. Try again later.');
     }
 });
 
