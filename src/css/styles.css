@@ -1,0 +1,56 @@
+.main__div {
+    background-color: #121212;
+    color: #fff;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 3%; */
+    min-height: 100vh;
+    overflow-y: hidden;
+}
+.login-form {
+    padding: 03% 3%;
+    background-color: #181818;
+    border-radius: 5%;
+}
+#btn-signin {
+    border-radius: 15%;
+    background-color: #181818;
+}
+#input {
+    background-color: #181818;
+}
+.heading {
+    padding: 5% 0%;
+    display: flex;
+    justify-content: center;
+}
+.heading > img {
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+.sign-image > img {
+    width: 600px;
+    height: 550px;
+}
+
+.no-account {
+    padding: 4% 2%;
+}
+
+#radio-btn {
+    display: flex;
+    font-size: medium;
+}
+#radio-btn > h4 {
+    color: #007bff;
+    font-size: medium;
+    margin-right: 4.5%;
+    margin-top: 1.5%;
+}

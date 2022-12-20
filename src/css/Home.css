@@ -1,0 +1,39 @@
+
+.main {
+    /* background: linear-gradient(#404040, #181818); */
+    background-color: #181818;
+    color: #fff;
+    /* overflow-y: hidden; */
+}
+.about-app {
+    display: flex;
+}
+.image-container {
+    padding: 3% 10%;
+}
+.image-container > img{
+    width: 500px;
+    height: 550px;
+}
+.text-container {
+    justify-content: center;
+    margin-top: 3%;
+    padding: 6% 0%;
+}
+.text-container > h1 {
+    text-transform: uppercase;
+	background: linear-gradient(to right, #30CFD0 0%, #491e7d 100%);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+    font-size: 7vw;
+    font-weight: 900;
+}
+.text-container > p {
+    font-family: "Neue Montreal","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";    
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -.002em;
+    background: linear-gradient(to right, #e88a80 0%, #d48f56 100%);
+	background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

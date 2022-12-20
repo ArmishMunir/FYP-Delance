@@ -1,0 +1,75 @@
+.JobForm {
+    background-color: #121212;
+    color: #fff;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3%;
+    min-height: 100%;
+    /* overflow-y: hidden; */
+    overflow: hidden;
+}
+.form {
+    padding: 1% 3%;
+    background-color: #181818;
+    border-radius: 5%;
+}
+#btn-signin {
+    border-radius: 15%;
+    background-color: #181818;
+}
+#input {
+    background-color: #181818;
+}
+
+.form-img > img {
+    margin-left: 20px;
+    margin-bottom: 15%;
+}
+
+.no-account {
+    padding: 4% 2%;
+}
+.tags {
+    background-color: #404040;
+    /* align-items: center; */
+    text-align: center;
+    border-radius: 5px;
+    padding: 2%;
+    margin: 5% 0%;
+}
+.tags > ul {
+    list-style-type: none;
+}
+#tags__list-items {
+    display: flex;
+}
+#listItem {
+    margin-right: 4px;
+    border: 1px solid #404040;
+    padding: 4px;
+    background-color: #cdcccc;
+    color: #121212;
+    border-radius: 15px;
+}
+#listItem {
+    display: flex;
+}
+#input-field {
+    background-color: #404040;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    padding: 1%;
+    margin-bottom: 2%; 
+}
+
+#text-area {
+    overflow: hidden;
+}
+
+#cancel {
+    cursor: pointer;
+}

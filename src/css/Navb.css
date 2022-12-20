@@ -1,0 +1,30 @@
+.Navb {
+    color: #fff;
+    overflow-y: hidden;
+    font-size:10px;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+}
+.logo > img {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+#heading {
+    margin-top: 4px;
+}
+.list-items {
+    display: flex;
+}
+.nav-content {
+    display: flex;
+    margin-left: 70px;
+    justify-content: space-between;
+    /* margin-top: 8px; */
+    font-weight: 100;
+}
+.login-link, .signup-link,.jobpost-link, .showjobs-link {
+    margin-left: 20px;
+}

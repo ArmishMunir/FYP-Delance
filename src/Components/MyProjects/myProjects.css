@@ -1,0 +1,66 @@
+
+.main {
+    background-color: #121212;
+    color: bisque;
+    min-width: 100%;
+    min-height: 90vh;
+    justify-content: center ;
+}
+.my-projects {
+    display: flex;
+    flex-direction: column;
+}
+.personal-info {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 3% 5%;
+}
+.personal-info > h3 {
+    font-size: large;
+    font-weight: bolder;
+    letter-spacing: 0.2em;
+    color: #16a34a;
+    word-spacing: 2px;
+}
+.upper-row {
+    padding: 1%;
+}
+.description {
+    text-indent: 50px;
+    font-size: medium;
+}
+#price-card {
+    display: flex;
+    margin-left: 7%;
+}
+#price-card > p,b {
+    font-size: large;
+    margin-right: 5px;
+}
+#price-card > b {
+    color: #16a34a;
+}
+.btn {
+    margin-bottom: 2%;
+}
+.bid {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    color: #fff;
+}
+#head {
+    color: #16a34a;
+}
+.loader {
+    margin-top: -0.5%;
+    margin-left: 25%;
+    padding: 12% 0%;
+}
+.chatIcon {
+    cursor: pointer;
+}
+.chatIcon:hover {
+    color: #16a34a;
+}

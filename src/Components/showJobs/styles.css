@@ -1,0 +1,69 @@
+/* ===== Google Font Import - Poformsins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.Card {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 13%;
+}
+.Tasks {
+    background-color: #121212;
+    padding: 2%;
+    min-height: 90vh;
+}
+#project {
+    background-color: #404040;
+    color: #ffff;
+    padding: 5%;
+}
+.upper-row {
+    display: flex;
+    margin: 0% 7%;
+    justify-content: space-between;
+}
+#ownerAddress {
+    margin-left: -38%;
+    margin-top: -2%;
+    font-size: small;
+    color: #cbc4c4;
+}
+#project-title {
+    color: #007bff;
+}
+#price {
+    color: #16a34a;
+}
+#model {
+    background-color: #181818;
+}
+#header {
+    color: #ffff;
+    background-color: #181818;    
+}
+.technologies {
+    /* margin-left: -55%; */
+    display: flex;
+    justify-content: space-around;
+    color: #16a34a;
+    padding: 1%;
+    margin-bottom: 2%;
+}
+
+.timeDuration {
+    display: flex;
+    margin-left: 5px;
+    color: #cbc4c4;
+}
+
+.jobs {
+    background-color: #121212;
+    min-height: 90vh;
+    min-width: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+.loader {
+    margin-top: 15%;
+    align-items: center;
+}
