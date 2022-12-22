@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Card, Row, Col, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -12,10 +12,11 @@ import { Link } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
 import Store from "../chat/Store";
 
+
 function MyProjects(props) {
   // Rendering projects.
-
   const [loading, setLoading] = useState(false);
+  // console.log("userState: ", userState);
 
   const toChat = (title, ownerAddress) => {
     return (
@@ -49,6 +50,8 @@ function MyProjects(props) {
   function renderProjects(job) {
     // console.log('jobs: ',job);
     let currentAccount = localStorage.getItem("ownerAddress");
+    currentAccount = "0x3629d41f93137044ec4aeb65b49fbe4319747bdf";
+    
     return job.ownerAddress === currentAccount ? (
       <Row key={job._id}>
         <Col xs={6} md={4} lg={8} className="Card">

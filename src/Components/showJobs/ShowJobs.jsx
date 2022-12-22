@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./styles.css";
 import axios from "axios";
 import TaskAltTwoToneIcon from "@mui/icons-material/TaskAltTwoTone";
@@ -9,8 +9,10 @@ import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import BidPopUp from "./BidPopUp";
 import HashLoader from "react-spinners/HashLoader";
 import { Card, Row, Col } from "react-bootstrap";
+import { UserContext} from "../../UserContext";
 
-function ShowJobs(props) {
+
+function ShowJobs() {
   const [loading, setLoading] = useState(false);
 
   const resetLoader = () => {
@@ -73,12 +75,16 @@ function ShowJobs(props) {
   const [projects, setProjects] = useState([]);
   let url = serverUrl + "/api/projects/getall";
 
+  
   useEffect(() => {
     axios
       .get(url)
       .then((res) => setProjects(res.data))
       .catch((err) => console.log(`Error while fetching projects! ${err}`));
   }, []);
+
+  const { userState } = useContext(UserContext);
+  console.log("from showjobs: ", userState);
 
   return (
     <div className="jobs">

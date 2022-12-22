@@ -13,6 +13,8 @@ import FetchData from './Components/showJobs/FetchData';
 import BidBlockchain from './Components/MyProjects/BidBlockchain';
 // import MyProjects from './Components/MyProjects/MyProjects';
 import Chat from './Components/chat/Chat';
+import ContextProvider from './Context';
+import { UserContext } from './UserContext';
 
 function App() {
 
@@ -26,9 +28,16 @@ function App() {
   //   .catch(err => console.log(`Error while fetching Users!\n ${}`));
   // }, []);
 
+  const [userState, setUserState] = useState(false);
+
+  const updateEmail = (email) => {
+    setUserState(true);
+  };
+
   
   return (
     <div className="App">
+      <UserContext.Provider value={{userState, setUserState}}>
       <Router>
         <Navb />
         <div className='routes'>
@@ -47,8 +56,9 @@ function App() {
           </Routes>
         </div>
 
-        
+
       </Router>
+      </UserContext.Provider>
     </div>
   );
 }

@@ -1,10 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+// import { Context } from "../../Context";
 import { Link } from "react-router-dom";
 import { Navbar, Container } from "react-bootstrap";
 import "../../css/Navb.css";
+import { UserContext } from "../../UserContext";
 
 function Navb() {
-
+  const { userState } = useContext(UserContext);
+  console.log('from nav:',userState);
   const [login, setLogin] = useState(false);
   // setLogin(sessionStorage.getItem("login")); 
 
@@ -12,13 +15,6 @@ function Navb() {
     setLogin(sessionStorage.getItem("login")); 
   }, [login]);
 
-
-  // eslint-disable-next-line no-unused-vars
-  const resetState = () => {
-    sessionStorage.removeItem('login');
-    sessionStorage.setItem('login', false);
-    setLogin(false);
-  }
 
 
   return (
@@ -43,7 +39,7 @@ function Navb() {
 
           {/* remaining nav items! */}
           <div className="nav-content">
-            {!login ? 
+            {userState.isLoggedIn ? 
             (
               <>
                 <div className="login-link">

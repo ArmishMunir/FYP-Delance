@@ -95,3 +95,105 @@ class FetchData extends Component {
 }
 
 export default FetchData;
+
+
+// import React, { useEffect, useState } from "react";
+// import Web3 from "web3";
+// import "./styles.css";
+// import swal from "sweetalert";
+// import { DELANCE_CONTRACT_ADDRESS, DELANCE_ABI } from "../abi";
+// import ShowJobs from "../showJobs/ShowJobs";
+
+
+// function FetchData() {
+//   const [contractData, setContractData] = useState({
+//     account: "",
+//     projectsCount: 0,
+//     projects: [],
+//     delanceContaract: "",
+//   });
+
+
+//   const initConnection = async () => {
+//     // connenting with metamask!
+//     var provider = window.ethereum;
+//     let selectedAccount;
+//     if (typeof provider !== "undefined") {
+//       provider.request({ method: "eth_requestAccounts" })
+//       .then((accounts) => {
+//         selectedAccount = accounts[0];
+//         setContractData({ account: selectedAccount });
+//         // console.log(`Selected account is: ${selectedAccount}`);
+//         localStorage.setItem("ownerAddress", contractData.account);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+
+//     window.ethereum.on("accountsChanged", function(accounts) {
+//       localStorage.removeItem("ownerAddress");
+//       selectedAccount = accounts[0];
+//       localStorage.setItem("ownerAddress", contractData.account);
+//       setContractData({ account: selectedAccount });
+//       console.log(`Account changed to: ${selectedAccount}`);
+//     });
+//     } else {
+//       swal({
+//         title: "Provider Undefined!",
+//         icon: "fail",
+//       });
+//     }   
+//   }
+
+//   const deployContract = async () => {
+//     var provider = window.ethereum;
+//     const web3 = new Web3(provider);
+//     const networkId = await web3.eth.net.getId();
+
+//     // actual fetching plus posting data on the blockchian!!!
+
+//     if (DELANCE_CONTRACT_ADDRESS) {
+//       const delanceContract = new web3.eth.Contract(
+//         DELANCE_ABI,
+//         DELANCE_CONTRACT_ADDRESS
+//       );
+
+//       const _projectsCount = await delanceContract.methods
+//         .productCount()
+//         .call();
+//       setContractData({ projectsCount: _projectsCount });
+
+//       for (var i = 1; i <= _projectsCount; i++) {
+//         let _project = await delanceContract.methods.products(i).call();
+//         _project = Object.values(_project);
+//         setContractData({
+//           projects: [...contractData.projects, _project],
+//         });
+//       }
+//       console.log(contractData.projects);
+//     } else {
+//       swal({
+//         title: "Smart contract not deployed",
+//         text: `Smart contract not deployed to the current detected network: ${networkId}!`,
+//         icon: "fail",
+//       });
+//     }
+//   };
+
+//   useEffect(() => {
+//     initConnection();
+//     deployContract();
+//   }, []);
+
+
+//   localStorage.setItem("ownerAddress", contractData.account);
+//   return (
+//     <div>
+//       <ShowJobs jobs={contractData.projects} />
+//     </div>
+//   );
+  
+// }
+
+// export default FetchData;
+// // 
