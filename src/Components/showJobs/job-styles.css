@@ -1,0 +1,99 @@
+/* ===== Google Font Import - Poformsins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+
+.jobs {
+    background-color: #181818;
+    margin-top: -2%;
+}
+
+.Row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Card {
+    color: #ffff;
+    padding: 0.5%;
+    margin: 2%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px 0 rgba(234, 224, 224, 0.2);
+}
+.Tasks {
+    padding: 2%;
+    margin: 2%;
+}
+#project {
+    background-color: #404040;
+    color: #ffff;
+    padding: 5%;
+}
+.upper-row {
+    display: flex;
+    justify-content: space-between;
+}
+#ownerAddress {
+    font-size: small;
+    color: #cbc4c4;
+}
+#project-title {
+    color: #007bff;
+}
+#price {
+    color: #fbbf24;
+    justify-content: start;
+    font-size: medium;
+    margin-right: 0%;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    margin: 2%;
+}
+
+#model {
+    background-color: #404040;
+}
+#header {
+    color: #ffff;
+    background-color: #404040;  
+    padding: 2%;
+    border-radius: 0px;
+}
+.technologies {
+    /* margin-left: -55%; */
+    display: flex;
+    justify-content: space-around;
+    color: #16a34a;
+    padding: 1%;
+    margin-bottom: 2%;
+    font-size: small;
+}
+
+.upload {
+    background-color: #404040;
+    color: #ffff;
+
+}
+.upload > input {
+    border-radius: 5px;
+    margin : 0% 1%;
+}
+
+.timeDuration {
+    display: flex;
+    color: #cbc4c4;
+    font-size: small;
+    padding: 1%;
+}
+
+.loader {
+    margin-top: 15%;
+    align-items: center;
+}

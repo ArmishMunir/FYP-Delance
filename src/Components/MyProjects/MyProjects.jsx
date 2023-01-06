@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
 import Store from "../chat/Store";
 
-
 function MyProjects(props) {
   // Rendering projects.
   const [loading, setLoading] = useState(false);
@@ -34,10 +33,10 @@ function MyProjects(props) {
   const serverUrl = "http://localhost:8080";
 
   const deleteProject = (id) => {
-    console.log("del: ", id);
+    // console.log("del: ", id);
     let url = serverUrl + "/api/projects/delete/";
 
-    console.log(url);
+    // console.log(url);
     axios
       .delete(url + id)
       .catch((err) => console.log(`Error while deleting projects! ${err}`));
@@ -50,8 +49,8 @@ function MyProjects(props) {
   function renderProjects(job) {
     // console.log('jobs: ',job);
     let currentAccount = localStorage.getItem("ownerAddress");
-    currentAccount = "0x3629d41f93137044ec4aeb65b49fbe4319747bdf";
-    
+    // currentAccount = "0x3629d41f93137044ec4aeb65b49fbe4319747bdf";
+
     return job.ownerAddress === currentAccount ? (
       <Row key={job._id}>
         <Col xs={6} md={4} lg={8} className="Card">
@@ -65,8 +64,8 @@ function MyProjects(props) {
                 <div className="chatIcon">
                   <ChatIcon
                     onClick={() => {
-                      console.log(job.title);
-                      localStorage.setItem("title", job.title)
+                      // console.log(job.title);
+                      localStorage.setItem("title", job.title);
                       toChat(job.title, job.ownerAddress);
                     }}
                   />
@@ -82,25 +81,28 @@ function MyProjects(props) {
 
               <div className="price">
                 <Card.Text id="price-card">
-                  <p>Rate: </p>
+                  <p>Bidget: </p>
                   <b id="digit">{job.price} eth</b>
 
                   {/* <FontAwesomeIcon icon={faEthereum} /> */}
                 </Card.Text>
-
-                <Button
-                  className="btn"
-                  onClick={(e) => {
-                    props.completeJob(
-                      freeLancerAddr,
-                      DELANCE_CONTRACT_ADDRESS,
-                      job.price
-                    );
-                    deleteProject(job._id);
-                  }}
-                >
-                  Complete Project
-                </Button>
+                {job.ownerAddress === currentAccount ? (
+                  <Button
+                    className="btn"
+                    onClick={(e) => {
+                      props.completeJob(
+                        freeLancerAddr,
+                        DELANCE_CONTRACT_ADDRESS,
+                        job.price
+                      );
+                      deleteProject(job._id);
+                    }}
+                  >
+                    Complete Project
+                  </Button>
+                ) : (
+                  <Button className="btn">Upload Files.</Button>
+                )}
               </div>
 
               {/* all bids (popup). */}
@@ -108,6 +110,7 @@ function MyProjects(props) {
                 projectId={job._id}
                 projectTitle={job.projectTitle}
                 addJob={props.addJob}
+                
               />
             </Card.Body>
           </Card>
@@ -153,7 +156,7 @@ function MyProjects(props) {
                 <FontAwesomeIcon icon={faPlus} /> New Project
               </button>
             </div>
-            <div className="col-md-12" id="">
+            <div className="col-md-10 all_projects" id="">
               {projects.map(renderProjects)}
             </div>
             {/* <BidBlockchain addProject={props.addJob}/> */}

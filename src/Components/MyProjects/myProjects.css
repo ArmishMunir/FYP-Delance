@@ -5,16 +5,23 @@
     min-width: 100%;
     min-height: 90vh;
     justify-content: center ;
+    align-items: center;
 }
 .my-projects {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 .personal-info {
     justify-content: space-between;
     align-items: center;
     display: flex;
     padding: 3% 5%;
+}
+.all_projects {
+    margin-left: 16%;
+    justify-content: center;
 }
 .personal-info > h3 {
     font-size: large;
@@ -39,7 +46,7 @@
     margin-right: 5px;
 }
 #price-card > b {
-    color: #16a34a;
+    color: #facc15;
 }
 .btn {
     margin-bottom: 2%;

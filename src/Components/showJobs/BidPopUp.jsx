@@ -7,7 +7,7 @@ import {
   FormControl,
 } from "react-bootstrap";
 import axios from "axios";
-import "./styles.css";
+import "./job-styles.css";
 import swal from "sweetalert";
 
 function BidPopUp(props) {
@@ -86,6 +86,7 @@ function BidPopUp(props) {
               <InputGroup.Text id="basic-addon2">Summary</InputGroup.Text>
               <FormControl
                 as="textarea"
+                placeholder={props.job.projectDescription}
                 aria-describedby="basic-addon2"
                 type="text"
                 onChange={(e) => {
@@ -99,6 +100,7 @@ function BidPopUp(props) {
               <InputGroup.Text id="basic-addon2">Price </InputGroup.Text>
               <FormControl
                 aria-describedby="basic-addon2"
+                placeholder={props.job.price + " ETH"}
                 type="string"
                 onChange={(e) => {
                   const value = e.target.value;
@@ -111,6 +113,7 @@ function BidPopUp(props) {
               <InputGroup.Text id="basic-addon2">Time Required</InputGroup.Text>
               <FormControl
                 aria-describedby="basic-addon2"
+                placeholder={props.job.timeLine + " months"} 
                 type="number"
                 onChange={(e) => {
                   const value = e.target.value;

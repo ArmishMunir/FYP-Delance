@@ -15,7 +15,6 @@ function ShowBids(props) {
   };
   const serverUrl = "http://localhost:8080";
   const getBids = () => {
-    
     let url = serverUrl + "/api/bid/getByProjectId/";
     axios
       .get(url + props.projectId)
@@ -32,10 +31,20 @@ function ShowBids(props) {
       .catch((err) => console.log(`Error while updating projects ${err}!`));
   };
 
+  const updateFreelance = (_freelancer) => {
+    let url = serverUrl + "/api/projects/update-addr/";
+    // console.log("freelancer added: ", _freelancer);
+    axios
+      .put(url + props.projectId, 
+        { freelancerAddress: _freelancer }
+      )
+      .catch((err) => console.log(`Error while updating projects ${err}!`));
+  };
+
   useEffect(() => {
     // console.log("projectId: ", props.projectId);
     getBids();
-  }, []);
+  });
 
   const postOnBlockchain = (_p) => {
     // alert('Are you sure?')
@@ -80,6 +89,8 @@ function ShowBids(props) {
                   size="sm"
                   id="btn"
                   onClick={(e) => {
+                    // console.log("bid: ", bid.freeLancerAddress);
+                    updateFreelance(bid.freeLancerAddress);
                     postOnBlockchain(bid.price);
                     window.location.reload();
                   }}

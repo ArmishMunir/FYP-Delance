@@ -60,7 +60,7 @@ class BidBlockchain extends Component {
     var provider = window.ethereum;
     const web3 = new Web3(provider);
     const networkId = await web3.eth.net.getId();
-    console.log(`Network id is: ${networkId}`);
+    // console.log(`Network id is: ${networkId}`);
 
     // actual fetching plus posting data on the blockchian!!!
 
@@ -75,7 +75,7 @@ class BidBlockchain extends Component {
       const currentJobCount = await delanceContract.methods
         .productCount()
         .call();
-      console.log(`current job count: ${currentJobCount}`);
+      // console.log(`current job count: ${currentJobCount}`);
 
       const _projectsCount = await delanceContract.methods
         .productCount()
@@ -89,7 +89,7 @@ class BidBlockchain extends Component {
           projects: [...this.state.projects, _project],
         });
       }
-      console.log(this.state.projects);
+      // console.log(this.state.projects);
     } else {
       swal({
         title: "Smart contract not deployed",
@@ -100,7 +100,7 @@ class BidBlockchain extends Component {
   };
 
   addJob = (_projectTitle, _price) => {
-    console.log("Hello from addJob: ", this.state.account);
+    // console.log("Hello from addJob: ", this.state.account);
 
     this.state.delanceSmContaract.methods
       .createProduct(_projectTitle, _price)
@@ -112,7 +112,7 @@ class BidBlockchain extends Component {
           icon: "success",
         });
       });
-    console.log(`sender account: ${this.state.account}.. JOB ADDED!`);
+    // console.log(`sender account: ${this.state.account}.. JOB ADDED!`);
 
     // sweet alert!
   };
@@ -139,7 +139,7 @@ class BidBlockchain extends Component {
       value: amount,
     });
 
-    console.log("tx: ", tx);
+    // console.log("tx: ", tx);
 
     // { ----------------------------------------------------------} Attempt-2
     // let ethereum = window.ethereum;

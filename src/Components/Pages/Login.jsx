@@ -6,8 +6,34 @@ import axios from "axios";
 import { InputGroup, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
+import firebase from 'firebase/compat/app';
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+
 
 function Login() {
+
+  
+  firebase.initializeApp({
+    apiKey: "AIzaSyCJLfbdGIbBsTJvIaurEKPdipSXYMxosQA",
+    authDomain: "delance-chat-module.firebaseapp.com",
+    projectId: "delance-chat-module",
+    storageBucket: "delance-chat-module.appspot.com",
+    messagingSenderId: "730228602335",
+    appId: "1:730228602335:web:be02f0e0a8f55c355d806a",
+    measurementId: "G-VEVNBTZZG8"}
+  )
+
+  const auth = firebase.auth();
+  const firestore = firebase.firestore();
+
+  const [user] = useAuthState(auth);
+
+
   // const { updateEmail } = useContext(Context);
   const { setUserState } = useContext(UserContext);
   const [loginState, setLoginState] = useState({
@@ -99,6 +125,7 @@ function Login() {
                 {/* {sessionStorage.setItem("login", true)} */}
               </button>
             </div>
+            
           </form>
           {error}
           <div className="no-account">
@@ -110,6 +137,19 @@ function Login() {
               </Link>
             </p>
           </div>
+          <div className="md-6" id="btn-signin">
+              <button
+                onClick={() => {
+                  const provider = new firebase.auth.GoogleAuthProvider();
+                  auth.signInWithPopup(provider);
+                }
+                }
+                className="md-3  btn btn-primary"
+              >
+                Sign in with Google
+                {/* {sessionStorage.setItem("login", true)} */}
+              </button>
+            </div>
         </>
       </div>
     </div>

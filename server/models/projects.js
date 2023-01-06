@@ -27,7 +27,10 @@ const projectSchema = new mongoose.Schema({
     }],
     bidStatus: {
         type: Boolean
-    }
+    },
+    freelancerAddress: {
+        type: String
+    },
 })
 
 module.exports = mongoose.model('projects',projectSchema);

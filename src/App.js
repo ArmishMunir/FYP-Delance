@@ -15,6 +15,7 @@ import BidBlockchain from './Components/MyProjects/BidBlockchain';
 import Chat from './Components/chat/Chat';
 import ContextProvider from './Context';
 import { UserContext } from './UserContext';
+import ChatModule from './Components/chat/Chat-module';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
             <Route path='/show-jobs' element={<FetchData />}/>
             <Route path='/my-projects' element={<BidBlockchain />}/>
             <Route path='/chat' element={<Chat />}/>
+            <Route path='/chatroom' element={<ChatModule />}/>
             {/* MISSING PAGE 404 */}
             {/* <Route path='*' element={<PageNotFound />}/> */}
 

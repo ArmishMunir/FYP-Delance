@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Web3 from "web3";
-import "./styles.css";
+import "./job-styles.css";
 import swal from "sweetalert";
 import { DELANCE_CONTRACT_ADDRESS, DELANCE_ABI } from "../abi";
 import ShowJobs from "../showJobs/ShowJobs";
@@ -75,7 +75,7 @@ class FetchData extends Component {
           projects: [...this.state.projects, _project],
         });
       }
-      console.log(this.state.projects);
+      // console.log(this.state.projects);
     } else {
       swal({
         title: "Smart contract not deployed",

@@ -50,7 +50,34 @@ router.route("/update/:_id").put(async (req, resp) => {
     catch (err) {
         console.warn(err);
     }
-  })
+})
+
+
+router.route("/update-addr/:_id").put(async (req, resp) => {
+    try {
+        console.log("Route~Bid/update");
+        console.table(req.body);
+  
+        // regex to check if the id is valid
+        const reg = /^[0-9a-fA-F]{24}$/;
+        if (!reg.test(req.params._id)) {
+            resp.status(400).send("Invalid id");
+        }
+  
+        let result = await Projects.findByIdAndUpdate(req.params._id, req.body, {
+          freelancerAddress: req.body.freelancerAddress
+        });
+        
+        if (result == null) {
+            resp.status(201).send("Bid not updated");
+        } else {
+            resp.status(200).json(result);
+        }
+    }
+    catch (err) {
+        console.warn(err);
+    }
+})
 
 router.route("/get/:_id").get(async (req, resp) => {
     try {
@@ -95,7 +122,8 @@ router.post('/add',async (req, resp) => {
             ownerAddress: req.body.ownerAddress,
             price: req.body.price,
             technologies: req.body.technologies,
-            status: req.body.status
+            status: req.body.status,
+            freelancerAddress: req.body.freelancerAddress
 
         });
 
