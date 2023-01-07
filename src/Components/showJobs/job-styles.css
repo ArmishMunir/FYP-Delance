@@ -15,6 +15,11 @@
     justify-content: center;
 }
 
+.Card:hover {
+    cursor: pointer;
+    background-color: #7d7c7c;
+}
+
 .Card {
     color: #ffff;
     padding: 0.5%;
@@ -31,7 +36,6 @@
 #project {
     background-color: #404040;
     color: #ffff;
-    padding: 5%;
 }
 .upper-row {
     display: flex;
@@ -43,18 +47,27 @@
 }
 #project-title {
     color: #007bff;
+    display: flex;
+    justify-content: space-between;
 }
+
+#project-title  p {
+    margin: 0%;
+    padding: 0%;
+    color: #aba9a9;
+    font-size: small;
+}
+
 #price {
     color: #fbbf24;
     justify-content: start;
     font-size: medium;
-    margin-right: 0%;
 }
 
 .price {
     display: flex;
     justify-content: space-between;
-    margin: 2%;
+    /* margin: 2%; */
 }
 
 #model {
@@ -63,17 +76,15 @@
 #header {
     color: #ffff;
     background-color: #404040;  
-    padding: 2%;
+    /* padding: 2%; */
     border-radius: 0px;
 }
 .technologies {
-    /* margin-left: -55%; */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin: 0% 1%;
     color: #16a34a;
-    padding: 1%;
-    margin-bottom: 2%;
-    font-size: small;
+    font-size: medium;
 }
 
 .upload {
@@ -86,14 +97,11 @@
     margin : 0% 1%;
 }
 
-.timeDuration {
-    display: flex;
-    color: #cbc4c4;
-    font-size: small;
-    padding: 1%;
-}
-
 .loader {
     margin-top: 15%;
     align-items: center;
+}
+
+.description {
+    color: #ffff;
 }

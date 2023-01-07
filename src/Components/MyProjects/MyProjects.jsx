@@ -21,7 +21,7 @@ function MyProjects(props) {
     return (
       <>
         <Store />
-        {(window.location = "/chat")}
+        {(window.location = "/chatroom")}
       </>
     );
     // window.location = "/chat";
@@ -66,7 +66,8 @@ function MyProjects(props) {
                     onClick={() => {
                       // console.log(job.title);
                       localStorage.setItem("title", job.title);
-                      toChat(job.title, job.ownerAddress);
+                      window.location = `/chatroom?title=${job.projectTitle}`;
+                      // toChat(job.title, job.ownerAddress);
                     }}
                   />
                 </div>

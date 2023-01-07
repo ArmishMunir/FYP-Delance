@@ -23,8 +23,23 @@ const firestore = firebase.firestore();
 function ChatModule() {
   const [user] = useAuthState(auth);
 
+  var query = window.location.search.substring(1);
+  query = query.split("=")[1];
+  // setRoom(query.split("=")[1]);
+
   return (
     <div className="App">
+      <header>
+        {
+          user ? 
+            <div className="header__chat">
+              <h1>{query}</h1>
+              <SignOut />
+            </div>
+              
+          : <h1>Loading...</h1>
+        }
+      </header>
       <section>{user ? <ChatRoom /> : <SignIn />}</section>
     </div>
   );

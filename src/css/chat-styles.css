@@ -4,8 +4,16 @@
     margin: 0 auto;
   }
   
-
-  
+  .header__chat {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(24, 23, 23);
+  }
+  header h1{
+    color: white;
+    font-size: 2rem;
+  }
   .App section {
     display: flex;
     flex-direction: column;
@@ -32,7 +40,7 @@
   }
   
   main::-webkit-scrollbar-thumb {
-    background: #6649b8;
+    background: #181818;
   }
   
   .chat__form {

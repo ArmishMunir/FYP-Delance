@@ -35,6 +35,7 @@ function ShowJobs() {
                 <Card.Title id="project-title">
                   <TaskAltTwoToneIcon />
                   <b> {job.projectTitle}</b>
+                  <p>{" - " + job.timeLine + " months"}</p>
                 </Card.Title>
 
                 <Card.Text id="ownerAddress">
@@ -42,18 +43,14 @@ function ShowJobs() {
                 </Card.Text>
               </div>
 
-              <Card.Text id="">{job.projectDescription}</Card.Text>
+              <Card.Text className="description">{job.projectDescription}</Card.Text>
               <div className="technologies">
                 {/* skills:  */}
                 {/* <p>{job.technologies}</p> */}
                 <div className="tech">
-                  <b>Technologies:</b>{" "}
                   {job.technologies.map((i) => {
                     return "●\t" + i + "\t";
                   })}
-                </div>
-                <div className="timeDuration">
-                  <div><b>Time:</b> {job.timeLine + " months"} </div>
                 </div>
               </div>
 
