@@ -11,7 +11,6 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 
 
 

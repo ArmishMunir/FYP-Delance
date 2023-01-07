@@ -2,6 +2,8 @@
     color: #fff;
     overflow-y: hidden;
     font-size:10px;
+    z-index: 99;
+    position: fixed;
 }
 .logo {
     display: flex;

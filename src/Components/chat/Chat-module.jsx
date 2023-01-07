@@ -3,8 +3,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-
-import "./chat-styles.css";
+import "../../css/chat-styles.css";  
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -26,11 +25,6 @@ function ChatModule() {
 
   return (
     <div className="App">
-      <header>
-        <h1>⚛️🔥💬</h1>
-        <SignOut />
-      </header>
-
       <section>{user ? <ChatRoom /> : <SignIn />}</section>
     </div>
   );
@@ -97,7 +91,7 @@ function ChatRoom() {
         <span ref={dummy}></span>
       </main>
 
-      <form onSubmit={sendMessage}>
+      <form className='chat__form' onSubmit={sendMessage}>
         <input
           value={formValue}
           onChange={(e) => {
@@ -107,8 +101,8 @@ function ChatRoom() {
           placeholder="say something nice"
         />
 
-        <button type="submit" disabled={!formValue}>
-          🕊️
+        <button className='chat__btn' type="submit" disabled={!formValue}>
+          Send
         </button>
       </form>
     </>
@@ -123,12 +117,13 @@ function ChatMessage(props) {
   return (
     <>
       <div className={`message ${messageClass}`}>
-        <img
+        <img className="avatar"
           src={
             photoURL || "https://api.adorable.io/avatars/23/abott@adorable.png"
           }
+          alt="?"
         />
-        <p>{text}</p>
+        <p className="msg__p">{text}</p>
       </div>
     </>
   );

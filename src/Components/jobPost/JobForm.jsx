@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useState } from 'react'
+import './job_form.css';
 import {InputGroup, FormControl} from 'react-bootstrap'
 import CancelIcon from '@mui/icons-material/Cancel';
 import axios from 'axios';
 import swal from 'sweetalert'
 
 // import showJobs from '../showJobs/ShowJobs';
-import './job.css'
+
 
 function JobForm(props) {
   // console.log(props.addJob('alpha', 12));
@@ -82,7 +83,7 @@ function JobForm(props) {
 
   return (
     <div className='JobForm mb-6'>
-        <div className="form">
+        <div className="job__form">
         <>
           <div className="heading">
             <h1>Add a Project!</h1>
