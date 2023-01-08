@@ -9,12 +9,14 @@ import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import BidPopUp from "./BidPopUp";
 import HashLoader from "react-spinners/HashLoader";
 import { Card, Row, Col } from "react-bootstrap";
+import download from 'downloadjs';
 import { UserContext } from "../../UserContext";
 import SearchIcon from "@mui/icons-material/Search";
 import { joinSignature } from "ethers/lib/utils";
 
 function ShowJobs() {
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const resetLoader = () => {
     setLoading(true);
@@ -23,6 +25,28 @@ function ShowJobs() {
   setTimeout(() => {
     resetLoader();
   }, (Math.floor(Math.random() * 4) + 1) * 1000);
+  
+  const downloadFile = async (id, path, mimetype) => {
+    try {
+      const result = await axios.get(`http://localhost:8080/api/projects/download/${id}`, {
+        responseType: 'blob'
+      })
+      .then(res => {
+        console.log("File downloaded successfully!");
+        const split = path.split('/');
+        const filename = split[split.length - 1];
+        setErrorMsg('');
+        return download(res.data, filename, mimetype);
+      })
+      .catch((err) => console.log(`Error while downloading file ${err}!`));
+
+
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setErrorMsg('Error while downloading file. Try again later');
+      }
+    }
+  };
 
   function renderTasks(job) {
     let ownerAddress = job.ownerAddress;
@@ -63,6 +87,14 @@ function ShowJobs() {
                   <b>{"Budget: " + job.price}</b>
                   <FontAwesomeIcon icon={faEthereum} />
                 </Card.Text>
+              </div>
+              <div>
+                <a
+                  href="#/"
+                  onClick={() => {
+                    downloadFile(job._id, job.file_path, job.file_mimetype)
+                  }}
+                >Download Project Files</a>
               </div>
 
               <BidPopUp job={job} />
