@@ -74,3 +74,12 @@
 .btn__icon {
    margin-right: 5px;
 }
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btns__icon {
+    margin-right: 5px;
+}

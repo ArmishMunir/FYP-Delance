@@ -47,7 +47,7 @@ function Navb() {
                     Log in
                   </Link>
                 </div>
-
+              
                 <div className="signup-link">
                   <Link to="/signup" className="text-decoration-none">
                     Sign up

@@ -11,8 +11,6 @@ import HashLoader from "react-spinners/HashLoader";
 import { Card, Row, Col } from "react-bootstrap";
 import download from 'downloadjs';
 import { UserContext } from "../../UserContext";
-import SearchIcon from "@mui/icons-material/Search";
-import { joinSignature } from "ethers/lib/utils";
 
 function ShowJobs() {
   const [loading, setLoading] = useState(false);
@@ -91,7 +89,7 @@ function ShowJobs() {
               </div>
               <div>
                 <a
-                  href="#/"
+                  href="/"
                   onClick={() => {
                     downloadFile(job._id, job.file_path, job.file_mimetype)
                   }}

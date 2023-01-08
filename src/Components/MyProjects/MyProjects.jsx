@@ -10,6 +10,8 @@ import axios from "axios";
 import { DELANCE_CONTRACT_ADDRESS, freeLancerAddr } from "../abi";
 import HashLoader from "react-spinners/HashLoader";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 import swal from 'sweetalert';
 import Dropzone from "react-dropzone";
 import download from 'downloadjs';
@@ -161,34 +163,32 @@ function MyProjects(props) {
                   {/* <FontAwesomeIcon icon={faEthereum} /> */}
                 </Card.Text>
                 {job.ownerAddress === currentAccount ? (
-                  <>
-                  <Button
-                    className="btn"
-                    onClick={(e) => {
-                      props.completeJob(
-                        freeLancerAddr,
-                        DELANCE_CONTRACT_ADDRESS,
-                        job.price
-                      );
-                      deleteProject(job._id);
-                    }}
-                  >
-                    Complete Project
-                  </Button>
-                  <div>
-                    <a
-                      href="#/"
-                      onClick={() => {
-                        downloadFile(job._id, job.file_path, job.file_mimetype)
+                  <div className="btns">
+                    <Button
+                      className="btn btn-success btns__icon"
+                      onClick={(e) => {
+                        props.completeJob(
+                          freeLancerAddr,
+                          DELANCE_CONTRACT_ADDRESS,
+                          job.price
+                        );
+                        deleteProject(job._id);
                       }}
-                    >Download Delivery File</a>
+                    >
+                      <DoneAllIcon className="btn__icon"/>
+                    </Button>
+                      <Button className="btn btn-light"
+                        onClick={() => {
+                          downloadFile(job._id, job.file_path, job.file_mimetype)
+                        }}
+                        >
+                        <FileDownloadIcon className="btn__icon btns__icon"/>
+                      </Button>
                   </div>
-                  </>
                 ) : (
                   <>                  
-
                   <div className="upload-section">
-                    <Dropzone 
+                    <Dropzone
                       onDrop={onDrop}
                       onDragEnter={() => updateBorder('over')}
                       onDragLeave={() => updateBorder('leave')}
@@ -196,10 +196,13 @@ function MyProjects(props) {
                       {({ getRootProps, getInputProps }) => (
                         <div {...getRootProps({ className: 'drop-zone' })} ref={dropRef}>
                           <input {...getInputProps()} />
-                          <p>Drag and drop the delivery file OR click here to select a file</p>
-                          <ul className='jobform--notes'>Note:
-                            <li>Maximum file size: 15 MB</li>
-                            <li>In case of multiple files, zip them and upload</li>
+                          {/* <p>Drag and drop the delivery file OR click here to select a file</p> */}
+                          <ul className='jobform--notes'> 
+                            <Button className="btn btn-info btn-sm">
+                              <CloudUploadIcon className='btn__icon'/>
+                              Upload Files</Button>
+                            {/* <li>Maximum file size: 15 MB</li> */}
+                            {/* <li>In case of multiple files, zip them and upload</li> */}
                           </ul>
                           {file && (
                             <div>
