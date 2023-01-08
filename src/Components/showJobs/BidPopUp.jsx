@@ -63,10 +63,7 @@ function BidPopUp(props) {
       });
     handleClose();
   };
-
-  const fileSelectesHandler = (e) => {
-    console.log(e);
-  };
+  
 
   return (
     <>
@@ -122,15 +119,6 @@ function BidPopUp(props) {
               />
             </InputGroup>
 
-            <div className="upload">
-              <input
-                type="file"
-                className="fileInput"
-                onChange={() => {
-                  fileSelectesHandler();
-                }}
-              />
-            </div>
 
             {/* add attatchments. */}
           </form>
