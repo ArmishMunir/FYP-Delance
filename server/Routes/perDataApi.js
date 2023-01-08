@@ -61,7 +61,7 @@ router.post('/add',async (req, resp) => {
             _id: setid,
             projectId: req.body.projectId,
             ownerAddress: req.body.ownerAddress,
-            freeLancerAddr: req.body.freeLancerAddr,
+            freelancerAddress: req.body.freelancerAddress,
         });
 
 

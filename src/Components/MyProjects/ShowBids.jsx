@@ -8,7 +8,7 @@ function ShowBids(props) {
   const [show, setShow] = useState(false);
   const [bids, setBids] = useState([]); // state for all projects!
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false)};
 
   const handleShow = () => {
     setShow(true);
@@ -44,10 +44,12 @@ function ShowBids(props) {
   useEffect(() => {
     // console.log("projectId: ", props.projectId);
     getBids();
+    // console.log('bid: ',bids);
   });
 
 
-  const add_toMyProjects = (_id, _owner, _freelancer) => {
+  const add_toMyProjects = (_id, _freelancer, _owner) => {
+    console.log("id: ", _id, " freelancer: ", _freelancer, " owner: ", _owner);
     let url = serverUrl + "/api/personalProject/add/";
     axios.post(url, {
       projectId: _id,

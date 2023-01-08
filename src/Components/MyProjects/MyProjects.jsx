@@ -8,24 +8,11 @@ import ShowBids from "./ShowBids";
 import "./myProjects.css";
 import axios from "axios";
 import { DELANCE_CONTRACT_ADDRESS, freeLancerAddr } from "../abi";
-import { Link } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
-import Store from "../chat/Store";
 
 function MyProjects(props) {
   // Rendering projects.
   const [loading, setLoading] = useState(false);
-  // console.log("userState: ", userState);
-
-  const toChat = (title, ownerAddress) => {
-    return (
-      <>
-        <Store />
-        {(window.location = "/chatroom")}
-      </>
-    );
-    // window.location = "/chat";
-  };
 
   const resetLoader = () => {
     setLoading(true);
@@ -33,10 +20,7 @@ function MyProjects(props) {
   const serverUrl = "http://localhost:8080";
 
   const deleteProject = (id) => {
-    // console.log("del: ", id);
     let url = serverUrl + "/api/projects/delete/";
-
-    // console.log(url);
     axios
       .delete(url + id)
       .catch((err) => console.log(`Error while deleting projects! ${err}`));
@@ -51,7 +35,7 @@ function MyProjects(props) {
     let currentAccount = localStorage.getItem("ownerAddress");
     // currentAccount = "0x3629d41f93137044ec4aeb65b49fbe4319747bdf";
 
-    return job.ownerAddress === currentAccount ? (
+    return job.ownerAddress === currentAccount || job.freelancerAddress === currentAccount ? (
       <Row key={job._id}>
         <Col xs={6} md={4} lg={8} className="Card">
           <Card>
@@ -111,7 +95,6 @@ function MyProjects(props) {
                 projectId={job._id}
                 projectTitle={job.projectTitle}
                 addJob={props.addJob}
-                
               />
             </Card.Body>
           </Card>
@@ -125,6 +108,7 @@ function MyProjects(props) {
   const toPostProject = () => {
     window.location = "/job-post";
   };
+
 
   // FETCHING DATA!
 

@@ -4,7 +4,7 @@ const perDataSchema = new mongoose.Schema({
     projectId: {
         type: String,
     },
-    freeLancerAddr: {
+    freelancerAddress: {
         type: String,
         require
     },
