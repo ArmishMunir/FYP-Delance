@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { Card, Row, Col, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -10,10 +10,42 @@ import axios from "axios";
 import { DELANCE_CONTRACT_ADDRESS, freeLancerAddr } from "../abi";
 import HashLoader from "react-spinners/HashLoader";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import swal from 'sweetalert';
+import Dropzone from "react-dropzone";
+import download from 'downloadjs';
 
 function MyProjects(props) {
   // Rendering projects.
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null); // state for storing actual image
+  const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
+
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false); // state to show preview only for images
+  const dropRef = useRef(); // React ref for managing the hover state of droppable area
+
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
+
+    dropRef.current.style.border = '2px dashed #e9ebeb';
+  };
+
+  const updateBorder = (dragState) => {
+    if (dragState === 'over') {
+      dropRef.current.style.border = '2px solid #ffffff';
+    } else if (dragState === 'leave') {
+      dropRef.current.style.border = '2px dashed #e9ebeb';
+    }
+  };
 
   const resetLoader = () => {
     setLoading(true);
@@ -27,13 +59,64 @@ function MyProjects(props) {
       .catch((err) => console.log(`Error while deleting projects! ${err}`));
   };
 
-  const fileSelectesHandler = (e) => {
-    console.log(e);
-  };
 
   setTimeout(() => {
     resetLoader();
   }, (Math.floor(Math.random() * 1) + 0.5) * 1000);
+
+  function submitDeliveryFile() {
+    console.log(file);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    setErrorMsg('');
+
+    axios.post('http://localhost:8080/api/projects/submitDeliveryFile', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(res => {
+      console.log('file submitted: \t', res)
+      swal({
+        title: "File Submitted!",
+        text: `${file.name} has been submitted.`,
+        icon: "success"
+      });
+      
+    })
+    .catch(err => {
+      console.log(`error in submitting file ${err}!`)
+      swal({
+        title: "Error in submitting file.",
+        text: ``,
+        icon: "fail"
+      });
+    });
+  }
+
+  const downloadFile = async (id, path, mimetype) => {
+    try {
+      const result = await axios.get(`http://localhost:8080/api/projects/downloadDeliveryFile/${id}`, {
+        responseType: 'blob'
+      })
+      .then(res => {
+        console.log("File downloaded successfully!");
+        const split = path.split('/');
+        const filename = split[split.length - 1];
+        setErrorMsg('');
+        return download(res.data, filename, mimetype);
+      })
+      .catch((err) => console.log(`Error while downloading file ${err}!`));
+
+
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setErrorMsg('Error while downloading file. Try again later');
+      }
+    }
+  };
 
   function renderProjects(job) {
     // console.log('jobs: ',job);
@@ -78,6 +161,7 @@ function MyProjects(props) {
                   {/* <FontAwesomeIcon icon={faEthereum} /> */}
                 </Card.Text>
                 {job.ownerAddress === currentAccount ? (
+                  <>
                   <Button
                     className="btn"
                     onClick={(e) => {
@@ -91,15 +175,43 @@ function MyProjects(props) {
                   >
                     Complete Project
                   </Button>
+                  <div>
+                    <a
+                      href="#/"
+                      onClick={() => {
+                        downloadFile(job._id, job.file_path, job.file_mimetype)
+                      }}
+                    >Download Delivery File</a>
+                  </div>
+                  </>
                 ) : (
-                  <Button className="btn__upload btn-light" type="file" 
-                    onClick={(e) => {
-                      fileSelectesHandler(e);
-                    }}
-                  >
-                    <CloudUploadIcon className="btn__icon"/>
-                    Upload Files.
-                  </Button>
+                  <>                  
+
+                  <div className="upload-section">
+                    <Dropzone 
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder('over')}
+                      onDragLeave={() => updateBorder('leave')}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div {...getRootProps({ className: 'drop-zone' })} ref={dropRef}>
+                          <input {...getInputProps()} />
+                          <p>Drag and drop the delivery file OR click here to select a file</p>
+                          <ul className='jobform--notes'>Note:
+                            <li>Maximum file size: 15 MB</li>
+                            <li>In case of multiple files, zip them and upload</li>
+                          </ul>
+                          {file && (
+                            <div>
+                              <strong>Submitted file:</strong> {file.name}
+                              {submitDeliveryFile()}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                  </div>
+                  </>
                 )}
               </div>
 
