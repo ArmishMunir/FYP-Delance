@@ -8,7 +8,7 @@ Adressing the discontent of such people, we came forward with the idea of Delanc
 
 
 #### Salient Features:
-* You need to connect your Metamask wallet to perform these operations.
+* You need to connect your `Metamask wallet` to perform these operations.
 * In order to bid on a project, write a brief summary and quote your price in the popup.
 * Project Publisher/Employer has the option to see all placed bids to choose from.
 * They can view each bid and can select their desired applicant.
@@ -28,10 +28,10 @@ To run the backend of our project, you need to open the terminal/command line in
 After executing this command. Backend will be running on port `8080`
 
 ### `⛏ compile smart contract`
-- To compile the smart contract, make sure you have the Truffle Suite set up and running.
+- To compile the smart contract, make sure you have the `Truffle Suite` set up and running.
 - Now type the following commands:
 - `truffle init` then `truffle compile`
-- Before running these commands, make sure Ganache is running. It is a private Ethereum blockchain environment that allows you to emulate the Ethereum blockchain to be able to interact with smart contracts.
+- Before running these commands, make sure Ganache is running. It is a private `Ethereum blockchain environment` that allows you to emulate the Ethereum blockchain to be able to interact with smart contracts.
 
 ### `✅ npm start`
 
