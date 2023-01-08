@@ -6,6 +6,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `run backend`
+To run the backend of our project, you need to open the terminal/command line in server folder and run the followig command:
+`nodemon index.js`
+
+### `compile smart contract`
+- To compile the smart contract, make sure you've truffle up and running. 
+- Now type the following commands:
+- truffle init & truffle compile
+- Before running these commands, make sure Ganache is running which is a private Ethereum blockchain environment that allows to you emulate the Ethereum blockchain so that you can interact with smart contracts.
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -29,6 +39,15 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+## Delance
+* Delance is a decentralized freelance plateform, where you can post a project/job, browse jobs, search jobs and bid upon existing projects.
+* You need to connect your metamask wallet to perform these operations.
+* Once you bid on the project, attach the summary and some files with the bid.
+* The employeer will choose from the list of bids.
+* Project Owner has the option to see all the bids, and choose from them.
+* In case you get luck enough, that you bid got accepted. Then you'll be able to see this project in My Projects field.
+* After completing the project, you've an option to add the files. Once the owner made sure that the project is completed, you'll get you funds.
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
@@ -38,34 +57,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
