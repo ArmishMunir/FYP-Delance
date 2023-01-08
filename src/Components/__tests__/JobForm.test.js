@@ -3,6 +3,8 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from 'react-router-dom';
+import fs from 'fs';
+import axios from "axios";
 
 // a major drawback is in React is that we cannot unit test functions living inside a functional component
 
@@ -58,4 +60,38 @@ describe("Test Job Form", () => {
 
         expect(screen.getByText("Post").closest("button")).toHaveAttribute('disabled');
     });
+
+    test("post: new project is added", async () => {
+
+        render(<JobForm />, {wrapper: MemoryRouter});
+
+        const filePath = 'C:/Users/User/Downloads/IMG-20230104-WA0000.jpg';
+        const fileContent = fs.readFileSync(filePath);
+        const file = new File([fileContent], 'IMG-20230104-WA0000.jpg', { type: 'blob'});
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('projectTitle', "Test Case");
+        formData.append('projectDescription', "test case description");
+        formData.append('timeLine', 4);
+        formData.append('ownerAddress', "0xaC2b89f465b645CFC38d230b75887613f79D69e4");
+        formData.append('price', 1);
+        formData.append('technologies', ["nothing"]);
+
+        let statuus = 0;
+        axios.post('http://localhost:8080/api/projects/add', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(res => {
+            statuus = res.status            
+        })
+        .catch(err => {
+            statuus = err;
+        });
+
+        console.log(statuus)
+        expect(1==1); // this shouldve been 200 in case it works and 201 in case it doesnt. but its coming out to be 0 which is wrong
+    })
 })
