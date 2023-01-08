@@ -10,21 +10,10 @@ const projectRoutes = require("./Routes/projectAPI");
 const bidRoutes = require("./Routes/bidApi");
 const chatRoutes = require("./Routes/chat");
 const personalProjectRoutes = require("./Routes/perDataApi");
-const multer = require("multer");
 
 app.use(express.json());
 app.use(cors());
 
-const fileStorageEngine = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, "../files");
-  },
-  filename: (req, file, callback) => {
-    callback(null, Date.now() + "--" + file.originalname);
-  },
-});
-
-const upload = multer({storage: fileStorageEngine});
 
 const DB =
   "mongodb://armishbro:its1600244@cluster0-shard-00-00.oe6wa.mongodb.net:27017,cluster0-shard-00-01.oe6wa.mongodb.net:27017,cluster0-shard-00-02.oe6wa.mongodb.net:27017/?ssl=true&replicaSet=atlas-9vadre-shard-0&authSource=admin&retryWrites=true&w=majority";
@@ -45,9 +34,6 @@ app.use("/api/bid", bidRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/personalProject", personalProjectRoutes);
 
-app.post("/uploadFile", upload.array('images', 3),(req,res) => {
-    res.send('file uploaded successfully!');
-})
 
 const port = process.env.PORT || 8080;
 
