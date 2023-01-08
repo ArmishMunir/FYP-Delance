@@ -35,6 +35,7 @@ function ShowJobs() {
         console.log("File downloaded successfully!");
         const split = path.split('/');
         const filename = split[split.length - 1];
+        console.log(filename);
         setErrorMsg('');
         return download(res.data, filename, mimetype);
       })

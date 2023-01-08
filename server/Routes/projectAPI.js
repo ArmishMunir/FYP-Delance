@@ -7,6 +7,7 @@ const res = require("express/lib/response");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Projects = require("../models/projects");
+const DeliveryFile = require("../models/deliveryFile");
 
 
 const upload = multer({
@@ -173,6 +174,33 @@ router.post('/add', upload.single('file'), async (req, resp) => {
     }
 });
 
+router.post('/submitDeliveryFile', upload.single('file'), async (req, resp) => {
+    try {
+        
+        const { path, mimetype } = req.file;
+        
+        DeliveryFile.init();
+        const setid = new mongoose.Types.ObjectId();
+
+        const deliveryFileData = new DeliveryFile({
+            _id: setid,
+            file_path: path,
+            file_mimetype: mimetype
+        });
+
+        let result = await deliveryFileData.save();
+
+        if (result == null) {
+            resp.status(201).send("Delivery file not added");
+        } else {
+            resp.status(200).json(result);
+        }
+    } catch (err) {
+        console.warn(err);
+        resp.status(404).json("Err"); // Sending res to client some err occured.
+    }
+});
+
 router.route("/update/:id").put(async (req, resp) => {
     try {
         console.log("Route~Projects/update");
@@ -198,10 +226,25 @@ router.get('/download/:_id', async (req, res) => {
         // console.log(req.params._id);
 
         const project = await Projects.findById(req.params._id);
+        // console.log(project.file_path)
         res.set({
             'Content-Type': project.file_mimetype
         });
         res.sendFile(path.join(__dirname, '..', project.file_path));
+    } catch (error) {
+        res.status(400).send('Error while downloading file. Try again later.');
+    }
+});
+
+router.get('/downloadDeliveryFile/:_id', async (req, res) => {
+    try {
+        // console.log(req.params._id);
+
+        const deliveryFile = await DeliveryFile.findById(req.params._id);
+        res.set({
+            'Content-Type': deliveryFile.file_mimetype
+        });
+        res.sendFile(path.join(__dirname, '..', deliveryFile.file_path));
     } catch (error) {
         res.status(400).send('Error while downloading file. Try again later.');
     }
