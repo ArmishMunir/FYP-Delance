@@ -25,6 +25,14 @@ const projectSchema = new mongoose.Schema({
     technologies: [{
         type: String
     }],
+    file_path: {
+        type: String,
+        required: true
+      },
+    file_mimetype: {
+        type: String,
+        required: true
+    },
     bidStatus: {
         type: Boolean
     },
