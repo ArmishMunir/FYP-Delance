@@ -19,16 +19,6 @@ import ChatModule from './Components/chat/Chat-module';
 
 function App() {
 
-  // const [users, setUsers] = useState([]);
-  // const serverUrl = "http://localhost:8080";
-  // let url = serverUrl + "/api/signup/getall";
-
-  // useEffect(()=> {
-  //   axios.get(url)
-  //   .then(res => setUsers(res.data))
-  //   .catch(err => console.log(`Error while fetching Users!\n ${}`));
-  // }, []);
-
   const [userState, setUserState] = useState(false);
 
   const updateEmail = (email) => {

@@ -46,6 +46,17 @@ function ShowBids(props) {
     getBids();
   });
 
+
+  const add_toMyProjects = (_id, _owner, _freelancer) => {
+    let url = serverUrl + "/api/personalProject/add/";
+    axios.post(url, {
+      projectId: _id,
+      ownerAddress: _owner,
+      freelancerAddress: _freelancer,
+    });
+  };
+
+
   const postOnBlockchain = (_p) => {
     // alert('Are you sure?')
     let amount = ethers.utils.parseUnits(_p, "ether");
@@ -91,6 +102,7 @@ function ShowBids(props) {
                   onClick={(e) => {
                     // console.log("bid: ", bid.freeLancerAddress);
                     updateFreelance(bid.freeLancerAddress);
+                    add_toMyProjects(bid.projectId, bid.freeLancerAddress, bid.ownerId);
                     postOnBlockchain(bid.price);
                     window.location.reload();
                   }}

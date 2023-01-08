@@ -55,11 +55,13 @@ router.post('/add',async (req, resp) => {
         console.table(req.body);
 
         Personal.init();
+        const setid = new mongoose.Types.ObjectId();
 
         const personalData = new Personal({
+            _id: setid,
             projectId: req.body.projectId,
+            ownerAddress: req.body.ownerAddress,
             freeLancerAddr: req.body.freeLancerAddr,
-            ownerAddress: req.body.ownerAddress
         });
 
 

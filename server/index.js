@@ -9,6 +9,7 @@ const authRoutes = require("./Routes/auth");
 const projectRoutes = require("./Routes/projectAPI");
 const bidRoutes = require("./Routes/bidApi");
 const chatRoutes = require("./Routes/chat");
+const personalProjectRoutes = require("./Routes/perDataApi");
 const multer = require("multer");
 
 app.use(express.json());
@@ -42,6 +43,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/bid", bidRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/personalProject", personalProjectRoutes);
 
 app.post("/uploadFile", upload.array('images', 3),(req,res) => {
     res.send('file uploaded successfully!');
