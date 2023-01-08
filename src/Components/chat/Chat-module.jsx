@@ -19,12 +19,13 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
+var _query = window.location.search.substring(1);
+_query = _query.split("=")[1];
 
 function ChatModule() {
   const [user] = useAuthState(auth);
 
-  var query = window.location.search.substring(1);
-  query = query.split("=")[1];
+  
   // setRoom(query.split("=")[1]);
 
   return (
@@ -33,7 +34,7 @@ function ChatModule() {
         {
           user ? 
             <div className="header__chat">
-              <h1>{query}</h1>
+              <h1>{_query}</h1>
               <SignOut />
             </div>
               
@@ -75,7 +76,7 @@ function SignOut() {
 
 function ChatRoom() {
   const dummy = useRef();
-  const messagesRef = firestore.collection("messages");
+  const messagesRef = firestore.collection(_query);
   const query = messagesRef.orderBy("createdAt").limit(25);
 
   const [messages] = useCollectionData(query, { idField: "id" });

@@ -114,7 +114,7 @@ router.route("/get/:_id").get(async (req, resp) => {
   }
 });
 
-router.route("/get/:bidStatus").get(async (req, resp) => {
+router.route("/getBidStauts/:_id").get(async (req, resp) => {
     try {
       console.log("Route~Bid/get");
   
@@ -124,7 +124,7 @@ router.route("/get/:bidStatus").get(async (req, resp) => {
         resp.status(400).send("Invalid bidStatus");
       }
   
-      let result = await Bid.findById({ bidStatus: req.params.bidStatus });
+      let result = await Bid.findById({ _id: req.params.id });
       if (result == null) {
         resp.status(201).send("Bid not found");
       } else {
@@ -153,7 +153,7 @@ router.post("/add", async (req, resp) => {
       projectId: req.body.projectId,
       ownerId: req.body.ownerId,
       freeLancerAddress: req.body.freeLancerAddress,
-      bidStatus: req.body.bidStatus,
+      bidStatus: false,
     });
 
     let result = await bidData.save();
