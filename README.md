@@ -1,21 +1,21 @@
-# `Getting Started with Delance`
+# `📌 Getting Started with Delance`
 
-## Available Scripts
+## 💁 Available Scripts
 
 In the project directory, you can run:
 
-### `run backend`
+### `⛃ run backend`
 To run the backend of our project, you need to open the terminal/command line in server folder and run the followig command:
 `nodemon index.js`
 After executing this command. Backend will be running on port `8080`
 
-### `compile smart contract`
+### `⛏ compile smart contract`
 - To compile the smart contract, make sure you've truffle up and running.
 - Now type the following commands:
 - `truffle init` then `truffle compile`
 - Before running these commands, make sure Ganache is running which is a private Ethereum blockchain environment that allows to you emulate the Ethereum blockchain so that you can interact with smart contracts.
 
-### `npm start`
+### `✅ npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -23,12 +23,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+### `♲ npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `💪 npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -38,7 +38,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Delance
+## 👑 Delance
 * Delance is a decentralized freelance plateform, where you can post a project/job, browse jobs, search jobs and bid upon existing projects.
 * You need to connect your metamask wallet to perform these operations.
 * Once you bid on the project, attach the summary and some files with the bid.
