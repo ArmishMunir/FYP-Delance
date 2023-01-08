@@ -4,7 +4,7 @@
 ## 👑 About the Project
 With the exceeding pace of growth of the human species, the basic need of earning money for survival increases. The existing freelance and all other mainstream online job marketplaces have taken a turn for worse for both clients and freelancers. These giant conglomerates tend to adopt profit-centric policymaking which adversely affects smooth and reliable experience mainly for freelancers and job seekers. Some problems include difficulty in receiving payments, extremely high fees, biased feedback, and unexpected suspension of accounts, amongst others.
 
-Adressing the discontent of such people, we came forward with the idea of Delance. It is a decentralized freelance platform, where you can post a project/job, browse jobs, search jobs and bid upon existing projects.
+Adressing the discontent of such people, we came forward with the idea of Delance. It is a decentralized freelance platform, where you can `post a project/job`, `browse jobs`, `search jobs`, `bid upon existing projects` & `chat` with the freelancer.
 
 
 #### Salient Features:
