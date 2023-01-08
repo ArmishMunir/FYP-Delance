@@ -13,7 +13,6 @@ import FetchData from './Components/showJobs/FetchData';
 import BidBlockchain from './Components/MyProjects/BidBlockchain';
 // import MyProjects from './Components/MyProjects/MyProjects';
 import Chat from './Components/chat/Chat';
-import ContextProvider from './Context';
 import { UserContext } from './UserContext';
 import ChatModule from './Components/chat/Chat-module';
 

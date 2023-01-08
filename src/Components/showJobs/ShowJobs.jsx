@@ -10,6 +10,8 @@ import BidPopUp from "./BidPopUp";
 import HashLoader from "react-spinners/HashLoader";
 import { Card, Row, Col } from "react-bootstrap";
 import { UserContext } from "../../UserContext";
+import SearchIcon from "@mui/icons-material/Search";
+import { joinSignature } from "ethers/lib/utils";
 
 function ShowJobs() {
   const [loading, setLoading] = useState(false);
@@ -43,7 +45,9 @@ function ShowJobs() {
                 </Card.Text>
               </div>
 
-              <Card.Text className="description">{job.projectDescription}</Card.Text>
+              <Card.Text className="description">
+                {job.projectDescription}
+              </Card.Text>
               <div className="technologies">
                 {/* skills:  */}
                 {/* <p>{job.technologies}</p> */}
@@ -56,7 +60,7 @@ function ShowJobs() {
 
               <div className="price">
                 <Card.Text id="price">
-                  <b>{"Budget: "+ job.price}</b>
+                  <b>{"Budget: " + job.price}</b>
                   <FontAwesomeIcon icon={faEthereum} />
                 </Card.Text>
               </div>
@@ -73,6 +77,7 @@ function ShowJobs() {
 
   const serverUrl = "http://localhost:8080";
   const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
   let url = serverUrl + "/api/projects/getall";
 
   useEffect(() => {
@@ -84,13 +89,42 @@ function ShowJobs() {
 
   const { userState } = useContext(UserContext);
   // console.log("from showjobs: ", userState);
+  const [searchInput, setSearchInput] = useState("");
 
   return (
     <div className="jobs">
       {loading ? (
         <div className="Tasks">
+          <div className="search">
+            <input
+              className="search__input"
+              type="text"
+              placeholder="Search"
+              onChange={(e) => {
+                setSearchInput(e.target.value);
+                setFilteredProjects(projects.filter((job) => {
+                  return job.technologies.find((tech) => {
+                    return tech.toLowerCase().includes((searchInput.toLowerCase()));
+                  })
+                  // return job.technologies.toLowerCase().includes((searchInput.toLowerCase()));
+                }));
+              }}
+
+            />
+          </div>
+
           <div className="" id="">
-            {projects.map(renderTasks)}
+            {searchInput === "" || searchInput === ' ' ? (
+              <>
+                {projects.map(renderTasks)}
+              </>
+            ) : (
+                <>
+                  {filteredProjects.map(renderTasks)}
+                </>
+              )
+            }
+            
           </div>
         </div>
       ) : (

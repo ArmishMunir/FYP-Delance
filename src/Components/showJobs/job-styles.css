@@ -105,3 +105,23 @@
 .description {
     color: #ffff;
 }
+
+/* Task search */
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    margin: 2%;
+    max-width: 50%;
+    align-items: center;
+    text-align: center;
+    margin-left: 20%;
+}
+
+.search__input {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 1%;
+    width: 100%;
+}
