@@ -71,3 +71,6 @@
 .chatIcon:hover {
     color: #16a34a;
 }
+.btn__icon {
+   margin-right: 5px;
+}

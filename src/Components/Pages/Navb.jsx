@@ -39,7 +39,7 @@ function Navb() {
 
           {/* remaining nav items! */}
           <div className="nav-content">
-            {userState.isLoggedIn ? 
+            {!login? 
             (
               <>
                 <div className="login-link">

@@ -9,6 +9,7 @@ import "./myProjects.css";
 import axios from "axios";
 import { DELANCE_CONTRACT_ADDRESS, freeLancerAddr } from "../abi";
 import HashLoader from "react-spinners/HashLoader";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 function MyProjects(props) {
   // Rendering projects.
@@ -26,6 +27,10 @@ function MyProjects(props) {
       .catch((err) => console.log(`Error while deleting projects! ${err}`));
   };
 
+  const fileSelectesHandler = (e) => {
+    console.log(e);
+  };
+
   setTimeout(() => {
     resetLoader();
   }, (Math.floor(Math.random() * 1) + 0.5) * 1000);
@@ -35,7 +40,8 @@ function MyProjects(props) {
     let currentAccount = localStorage.getItem("ownerAddress");
     // currentAccount = "0x3629d41f93137044ec4aeb65b49fbe4319747bdf";
 
-    return job.ownerAddress === currentAccount || job.freelancerAddress === currentAccount ? (
+    return job.ownerAddress === currentAccount ||
+      job.freelancerAddress === currentAccount ? (
       <Row key={job._id}>
         <Col xs={6} md={4} lg={8} className="Card">
           <Card>
@@ -86,7 +92,14 @@ function MyProjects(props) {
                     Complete Project
                   </Button>
                 ) : (
-                  <Button className="btn">Upload Files.</Button>
+                  <Button className="btn__upload btn-light" type="file" 
+                    onClick={(e) => {
+                      fileSelectesHandler(e);
+                    }}
+                  >
+                    <CloudUploadIcon className="btn__icon"/>
+                    Upload Files.
+                  </Button>
                 )}
               </div>
 
@@ -108,7 +121,6 @@ function MyProjects(props) {
   const toPostProject = () => {
     window.location = "/job-post";
   };
-
 
   // FETCHING DATA!
 
