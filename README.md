@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# `Getting Started with Delance`
 
 ## Available Scripts
 
@@ -9,11 +7,12 @@ In the project directory, you can run:
 ### `run backend`
 To run the backend of our project, you need to open the terminal/command line in server folder and run the followig command:
 `nodemon index.js`
+After executing this command. Backend will be running on port `8080`
 
 ### `compile smart contract`
-- To compile the smart contract, make sure you've truffle up and running. 
+- To compile the smart contract, make sure you've truffle up and running.
 - Now type the following commands:
-- truffle init & truffle compile
+- `truffle init` then `truffle compile`
 - Before running these commands, make sure Ganache is running which is a private Ethereum blockchain environment that allows to you emulate the Ethereum blockchain so that you can interact with smart contracts.
 
 ### `npm start`
