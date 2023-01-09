@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./job-styles.css";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 import TaskAltTwoToneIcon from "@mui/icons-material/TaskAltTwoTone";
 import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -88,12 +89,11 @@ function ShowJobs() {
                 </Card.Text>
               </div>
               <div>
-                <a
-                  href="/"
+                <Button
                   onClick={() => {
                     downloadFile(job._id, job.file_path, job.file_mimetype)
                   }}
-                >Download Project Files</a>
+                >Download Project Files</Button>
               </div>
 
               <BidPopUp job={job} />

@@ -3,7 +3,7 @@ import Web3 from 'web3';
 export const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
 export const DELANCE_CONTRACT_ADDRESS = '0xD94a5F61290B7C4F570703Dbcb04674dD553ebA2';
 // export const DELANCE_CONTRACT_ADDRESS = '0xbb0EbE8Cd0C174999b853615D2A34004FC65a01F';
-export const freeLancerAddr = "0x8f995682Abaa322d0653178B93EC1AC69Ae398E7";
+export const freeLancerAddr = "0x284631078fA35D98C2b766C10928DEC11C9e3966";
 
 
 export const DELANCE_ABI = [
